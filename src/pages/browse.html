@@ -1,0 +1,662 @@
+<section class="page" id="browse-page">
+    <link rel="stylesheet" href="../css/browse.css">
+    <div class="page-header">
+        <h1 class="page-title">Explorar Modpacks</h1>
+        <p class="page-subtitle">Descubra e instale modpacks incríveis do Modrinth e CurseForge</p>
+    </div>
+
+    <div class="filters-section">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="mainSearch" placeholder="Buscar modpacks, mods, addons...">
+            </div>
+        </div>
+
+        <!-- Quick Filters -->
+        <div class="quick-filters">
+            <!-- Search Type Dropdown -->
+            <div class="filter-dropdown-wrapper">
+                <button class="filter-dropdown-btn active" id="searchTypeBtn">
+                    <span id="searchTypeText">Modpack</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="filter-dropdown-menu" id="searchTypeMenu">
+                    <div class="dropdown-item active" data-type="modpack">📦 Modpack</div>
+                    <div class="dropdown-item" data-type="mod">🔧 Mod</div>
+                    <div class="dropdown-item" data-type="addon">⚙️ Addon</div>
+                    <div class="dropdown-item" data-type="shader">✨ Shader</div>
+                    <div class="dropdown-item" data-type="resource-pack">🎨 Resource Pack</div>
+                </div>
+            </div>
+
+            <!-- Sort Dropdown -->
+            <div class="filter-dropdown-wrapper sort-wrapper">
+                <button class="filter-dropdown-btn active" id="sortBtn">
+                    <span id="sortText">Populares</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="filter-dropdown-menu" id="sortMenu">
+                    <div class="dropdown-item active" data-sort="popular">⭐ Mais Populares</div>
+                    <div class="dropdown-item" data-sort="downloads">⬇️ Mais Baixados</div>
+                    <div class="dropdown-item" data-sort="recent">🕐 Recém Atualizados</div>
+                    <div class="dropdown-item" data-sort="new">🆕 Mais Novos</div>
+                    <div class="dropdown-item" data-sort="rating">💯 Melhor Avaliados</div>
+                </div>
+            </div>
+
+            <!-- Results Counter -->
+            <div class="results-info">
+                <span>Encontrados:</span>
+                <span class="results-count-badge" id="resultsCounter">342</span>
+            </div>
+
+            <!-- View Mode Toggle -->
+            <div class="view-mode-toggle">
+                <button class="view-mode-btn active" id="gridViewBtn" data-view="grid" title="Visualização em grade">▦</button>
+                <button class="view-mode-btn" id="listViewBtn" data-view="list" title="Visualização em lista">☰</button>
+            </div>
+
+            <!-- Advanced Filters Button -->
+            <button class="advanced-filters-btn" id="advancedFiltersBtn">
+                <span>⚙️ Filtros</span>
+            </button>
+        </div>
+
+        <!-- Advanced Filters Section -->
+        <div class="advanced-filters-section" id="advancedFilters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label class="filter-label">Plataforma</label>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="platform" data-value="all">Todas</button>
+                        <button class="filter-btn" data-filter="platform" data-value="modrinth">Modrinth</button>
+                        <button class="filter-btn" data-filter="platform" data-value="curseforge">CurseForge</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Categoria</label>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="category" data-value="all">Todas</button>
+                        <button class="filter-btn" data-filter="category" data-value="tech">Tech</button>
+                        <button class="filter-btn" data-filter="category" data-value="magic">Magia</button>
+                        <button class="filter-btn" data-filter="category" data-value="adventure">Aventura</button>
+                        <button class="filter-btn" data-filter="category" data-value="survival">Sobrevivência</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label class="filter-label">Versão do Minecraft</label>
+                    <div class="select-wrapper">
+                        <select class="filter-select" id="versionFilter">
+                            <option value="all">Todas as versões</option>
+                            <option value="1.20">1.20.x</option>
+                            <option value="1.19">1.19.x</option>
+                            <option value="1.18">1.18.x</option>
+                            <option value="1.16">1.16.x</option>
+                            <option value="1.12">1.12.x</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Dificuldade</label>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="difficulty" data-value="all">Todas</button>
+                        <button class="filter-btn" data-filter="difficulty" data-value="casual">Casual</button>
+                        <button class="filter-btn" data-filter="difficulty" data-value="normal">Normal</button>
+                        <button class="filter-btn" data-filter="difficulty" data-value="expert">Expert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modpack-grid" id="modpackGrid">
+        <div class="modpack-card" data-platform="modrinth" data-category="tech">
+            <div class="modpack-image">
+                <span>🚀</span>
+                <div class="modpack-featured">⭐ Destaque</div>
+            </div>
+            <div class="modpack-info">
+                <span class="platform-badge badge-modrinth">Modrinth</span>
+                <h3>Fabulously Optimized</h3>
+                <p class="modpack-description">Modpack de performance focado em melhorar FPS com Fabric e otimizações</p>
+                <div class="modpack-meta">
+                    <div class="meta-item">⬇️ 5.2M</div>
+                    <div class="meta-item">⭐ 4.9</div>
+                    <div class="meta-item">🔧 1.20.4</div>
+                </div>
+                <div class="modpack-tags">
+                    <span class="tag">Performance</span>
+                    <span class="tag">Fabric</span>
+                    <span class="tag">Leve</span>
+                </div>
+                <div class="modpack-actions">
+                    <button class="btn btn-primary">⬇️ Instalar</button>
+                    <button class="btn btn-secondary btn-icon">ℹ️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modpack-card" data-platform="modrinth" data-category="adventure">
+            <div class="modpack-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <span>🌊</span>
+            </div>
+            <div class="modpack-info">
+                <span class="platform-badge badge-modrinth">Modrinth</span>
+                <h3>Better Minecraft</h3>
+                <p class="modpack-description">Minecraft melhorado com centenas de mods de conteúdo</p>
+                <div class="modpack-meta">
+                    <div class="meta-item">⬇️ 8.1M</div>
+                    <div class="meta-item">⭐ 4.8</div>
+                    <div class="meta-item">🔧 1.20.1</div>
+                </div>
+                <div class="modpack-tags">
+                    <span class="tag">Aventura</span>
+                    <span class="tag">Conteúdo</span>
+                    <span class="tag">Forge</span>
+                </div>
+                <div class="modpack-actions">
+                    <button class="btn btn-primary">⬇️ Instalar</button>
+                    <button class="btn btn-secondary btn-icon">ℹ️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modpack-card" data-platform="curseforge" data-category="adventure">
+            <div class="modpack-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <span>⚔️</span>
+            </div>
+            <div class="modpack-info">
+                <span class="platform-badge badge-curseforge">CurseForge</span>
+                <h3>Medieval Minecraft</h3>
+                <p class="modpack-description">Aventura medieval com castelos, dragões e RPG</p>
+                <div class="modpack-meta">
+                    <div class="meta-item">⬇️ 2.3M</div>
+                    <div class="meta-item">⭐ 4.6</div>
+                    <div class="meta-item">🔧 1.20.1</div>
+                </div>
+                <div class="modpack-tags">
+                    <span class="tag">Medieval</span>
+                    <span class="tag">RPG</span>
+                    <span class="tag">Aventura</span>
+                </div>
+                <div class="modpack-actions">
+                    <button class="btn btn-primary">⬇️ Instalar</button>
+                    <button class="btn btn-secondary btn-icon">ℹ️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modpack-card" data-platform="modrinth" data-category="magic">
+            <div class="modpack-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <span>🌙</span>
+            </div>
+            <div class="modpack-info">
+                <span class="platform-badge badge-modrinth">Modrinth</span>
+                <h3>All the Mods 9</h3>
+                <p class="modpack-description">A maior coleção de mods em um único modpack</p>
+                <div class="modpack-meta">
+                    <div class="meta-item">⬇️ 4.5M</div>
+                    <div class="meta-item">⭐ 4.9</div>
+                    <div class="meta-item">🔧 1.20.1</div>
+                </div>
+                <div class="modpack-tags">
+                    <span class="tag">Kitchen Sink</span>
+                    <span class="tag">Tech</span>
+                    <span class="tag">Magia</span>
+                </div>
+                <div class="modpack-actions">
+                    <button class="btn btn-primary">⬇️ Instalar</button>
+                    <button class="btn btn-secondary btn-icon">ℹ️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modpack-card" data-platform="curseforge" data-category="adventure">
+            <div class="modpack-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                <span>🌿</span>
+            </div>
+            <div class="modpack-info">
+                <span class="platform-badge badge-curseforge">CurseForge</span>
+                <h3>Vault Hunters</h3>
+                <p class="modpack-description">RPG focado em exploração de vaults com progressão única</p>
+                <div class="modpack-meta">
+                    <div class="meta-item">⬇️ 6.7M</div>
+                    <div class="meta-item">⭐ 4.8</div>
+                    <div class="meta-item">🔧 1.18.2</div>
+                </div>
+                <div class="modpack-tags">
+                    <span class="tag">RPG</span>
+                    <span class="tag">Rogue-like</span>
+                    <span class="tag">Quest</span>
+                </div>
+                <div class="modpack-actions">
+                    <button class="btn btn-primary">⬇️ Instalar</button>
+                    <button class="btn btn-secondary btn-icon">ℹ️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modpack-card" data-platform="modrinth" data-category="survival">
+            <div class="modpack-image" style="background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);">
+                <span>🏕️</span>
+            </div>
+            <div class="modpack-info">
+                <span class="platform-badge badge-modrinth">Modrinth</span>
+                <h3>Create: New Age</h3>
+                <p class="modpack-description">Progressão tech focada no mod Create com addons</p>
+                <div class="modpack-meta">
+                    <div class="meta-item">⬇️ 1.9M</div>
+                    <div class="meta-item">⭐ 4.7</div>
+                    <div class="meta-item">🔧 1.20.1</div>
+                </div>
+                <div class="modpack-tags">
+                    <span class="tag">Create</span>
+                    <span class="tag">Tech</span>
+                    <span class="tag">Automação</span>
+                </div>
+                <div class="modpack-actions">
+                    <button class="btn btn-primary">⬇️ Instalar</button>
+                    <button class="btn btn-secondary btn-icon">ℹ️</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modpack-card" data-platform="curseforge" data-category="magic">
+            <div class="modpack-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                <span>🔮</span>
+            </div>
+            <div class="modpack-info">
+                <span class="platform-badge badge-curseforge">CurseForge</span>
+                <h3>Arcane Engineering</h3>
+                <p class="modpack-description">Combinação única de magia e tecnologia</p>
+                <div class="modpack-meta">
+                    <div class="meta-item">⬇️ 3.2M</div>
+                    <div class="meta-item">⭐ 4.8</div>
+                    <div class="meta-item">🔧 1.19.2</div>
+                </div>
+                <div class="modpack-tags">
+                    <span class="tag">Magia</span>
+                    <span class="tag">Tech</span>
+                    <span class="tag">Expert</span>
+                </div>
+                <div class="modpack-actions">
+                    <button class="btn btn-primary">⬇️ Instalar</button>
+                    <button class="btn btn-secondary btn-icon">ℹ️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // ===== Aguardar DOM estar pronto =====
+    function waitForDOM() {
+        return new Promise(resolve => {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', resolve);
+            } else {
+                resolve();
+            }
+        });
+    }
+
+    // ===== Executar após DOM estar pronto =====
+    waitForDOM().then(() => {
+        console.log('🎯 Iniciando sistema de filtros...');
+
+        // ===== Filter System State =====
+        let currentFilters = {
+            searchType: 'modpack',
+            sort: 'popular',
+            platform: 'all',
+            category: 'all',
+            difficulty: 'all',
+            version: 'all',
+            search: ''
+        };
+
+        let currentViewMode = 'grid';
+
+        // ===== Dropdown Manager =====
+        class DropdownManager {
+            constructor(btnId, menuId, textSpanId, onSelect) {
+                this.btn = document.getElementById(btnId);
+                this.menu = document.getElementById(menuId);
+                this.textSpan = document.getElementById(textSpanId);
+                this.onSelect = onSelect;
+                this.isOpen = false;
+
+                if (!this.btn || !this.menu || !this.textSpan) {
+                    console.error(`❌ Erro ao inicializar dropdown: ${btnId}`);
+                    return;
+                }
+
+                console.log(`✅ Dropdown ${btnId} inicializado`);
+                this.setupListeners();
+            }
+
+            setupListeners() {
+                // Click no botão para alternar
+                this.btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    console.log('📌 Botão dropdown clicado');
+                    this.toggle();
+                });
+
+                // Click nos itens do menu
+                this.menu.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        console.log('📌 Item dropdown selecionado:', item.textContent);
+                        this.selectItem(item);
+                    });
+                });
+
+                // Fechar ao clicar fora
+                document.addEventListener('click', (e) => {
+                    if (this.isOpen && !this.btn.contains(e.target) && !this.menu.contains(e.target)) {
+                        this.close();
+                    }
+                });
+            }
+
+            toggle() {
+                console.log('🔄 Toggle dropdown:', !this.isOpen);
+                this.isOpen ? this.close() : this.open();
+            }
+
+            open() {
+                console.log('👉 Abrindo dropdown');
+                
+                // Fechar todos os outros dropdowns
+                document.querySelectorAll('.filter-dropdown-menu.active').forEach(menu => {
+                    if (menu !== this.menu) {
+                        menu.classList.remove('active');
+                    }
+                });
+                document.querySelectorAll('.filter-dropdown-btn.active').forEach(btn => {
+                    if (btn !== this.btn) {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                this.menu.classList.add('active');
+                this.btn.classList.add('active');
+                this.isOpen = true;
+            }
+
+            close() {
+                console.log('👈 Fechando dropdown');
+                this.menu.classList.remove('active');
+                this.btn.classList.remove('active');
+                this.isOpen = false;
+            }
+
+            selectItem(item) {
+                const isType = this.textSpan.id === 'searchTypeText';
+                const value = item.getAttribute(isType ? 'data-type' : 'data-sort');
+                const fullText = item.textContent.trim();
+                const text = fullText.split(' ').slice(1).join(' ');
+
+                // Remover active de todos os itens
+                this.menu.querySelectorAll('.dropdown-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+
+                // Adicionar active ao item selecionado
+                item.classList.add('active');
+
+                // Atualizar texto do botão
+                this.textSpan.textContent = text;
+
+                // Fechar dropdown
+                this.close();
+
+                // Chamar callback
+                if (this.onSelect) {
+                    this.onSelect(value);
+                }
+            }
+        }
+
+        // ===== Inicializar Dropdowns =====
+        function initializeDropdowns() {
+            console.log('🎯 Inicializando dropdowns...');
+            
+            const searchTypeDropdown = new DropdownManager('searchTypeBtn', 'searchTypeMenu', 'searchTypeText', (type) => {
+                console.log('📊 Tipo de busca alterado:', type);
+                currentFilters.searchType = type;
+                applyFilters();
+            });
+
+            const sortDropdown = new DropdownManager('sortBtn', 'sortMenu', 'sortText', (sort) => {
+                console.log('📊 Ordenação alterada:', sort);
+                currentFilters.sort = sort;
+                applyFilters();
+            });
+        }
+
+        // ===== View Mode Toggle =====
+        function initializeViewMode() {
+            console.log('🎯 Inicializando modo de visualização...');
+            
+            const gridViewBtn = document.getElementById('gridViewBtn');
+            const listViewBtn = document.getElementById('listViewBtn');
+            const modpackGrid = document.getElementById('modpackGrid');
+
+            if (!gridViewBtn || !listViewBtn || !modpackGrid) {
+                console.error('❌ Botões de modo de visualização não encontrados');
+                return;
+            }
+
+            gridViewBtn.addEventListener('click', () => {
+                console.log('📊 Mudando para visualização em grade');
+                currentViewMode = 'grid';
+                gridViewBtn.classList.add('active');
+                listViewBtn.classList.remove('active');
+                modpackGrid.classList.remove('list-view');
+            });
+
+            listViewBtn.addEventListener('click', () => {
+                console.log('📊 Mudando para visualização em lista');
+                currentViewMode = 'list';
+                listViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+                modpackGrid.classList.add('list-view');
+            });
+        }
+
+        // ===== Advanced Filters Toggle =====
+        function initializeAdvancedFilters() {
+            console.log('🎯 Inicializando filtros avançados...');
+            
+            const advancedFiltersBtn = document.getElementById('advancedFiltersBtn');
+            const advancedFiltersSection = document.getElementById('advancedFilters');
+
+            if (!advancedFiltersBtn || !advancedFiltersSection) {
+                console.error('❌ Elementos de filtros avançados não encontrados');
+                return;
+            }
+
+            advancedFiltersBtn.addEventListener('click', () => {
+                console.log('🔄 Alternando filtros avançados');
+                advancedFiltersSection.classList.toggle('active');
+                advancedFiltersBtn.classList.toggle('active');
+            });
+        }
+
+        // ===== Filter Buttons =====
+        function initializeFilterButtons() {
+            console.log('🎯 Inicializando botões de filtro...');
+            
+            const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filterType = btn.getAttribute('data-filter');
+                    const filterValue = btn.getAttribute('data-value');
+
+                    console.log(`📊 Filtro alterado: ${filterType} = ${filterValue}`);
+
+                    document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+
+                    currentFilters[filterType] = filterValue;
+                    applyFilters();
+                });
+            });
+        }
+
+        // ===== Version Filter =====
+        function initializeVersionFilter() {
+            console.log('🎯 Inicializando filtro de versão...');
+            
+            const versionFilter = document.getElementById('versionFilter');
+
+            if (!versionFilter) {
+                console.error('❌ Filtro de versão não encontrado');
+                return;
+            }
+
+            versionFilter.addEventListener('change', (e) => {
+                console.log('📊 Versão alterada:', e.target.value);
+                currentFilters.version = e.target.value;
+                applyFilters();
+            });
+        }
+
+        // ===== Search Input =====
+        function initializeSearchInput() {
+            console.log('🎯 Inicializando campo de busca...');
+            
+            const mainSearch = document.getElementById('mainSearch');
+
+            if (!mainSearch) {
+                console.error('❌ Campo de busca não encontrado');
+                return;
+            }
+
+            let searchTimeout;
+
+            mainSearch.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                currentFilters.search = e.target.value.toLowerCase();
+
+                searchTimeout = setTimeout(() => {
+                    console.log('📊 Busca:', currentFilters.search);
+                    applyFilters();
+                }, 150);
+            });
+        }
+
+        // ===== Apply All Filters =====
+        function applyFilters() {
+            console.log('🔄 Aplicando filtros...', currentFilters);
+            
+            const modpackCards = document.querySelectorAll('.modpack-card');
+            let visibleCount = 0;
+
+            modpackCards.forEach(card => {
+                const platform = card.getAttribute('data-platform');
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const description = card.querySelector('.modpack-description')?.textContent.toLowerCase() || '';
+
+                let shouldShow = true;
+
+                // Platform filter
+                if (currentFilters.platform !== 'all' && platform !== currentFilters.platform) {
+                    shouldShow = false;
+                }
+
+                // Category filter
+                if (currentFilters.category !== 'all' && category !== currentFilters.category) {
+                    shouldShow = false;
+                }
+
+                // Search filter
+                if (currentFilters.search && !title.includes(currentFilters.search) && !description.includes(currentFilters.search)) {
+                    shouldShow = false;
+                }
+
+                card.style.display = shouldShow ? 'block' : 'none';
+                if (shouldShow) visibleCount++;
+            });
+
+            updateResultsCounter(visibleCount);
+        }
+
+        function updateResultsCounter(count) {
+            const counter = document.getElementById('resultsCounter');
+            if (counter) {
+                counter.textContent = count;
+            }
+        }
+
+        // ===== Install Buttons =====
+        function initializeInstallButtons() {
+            console.log('🎯 Inicializando botões de instalação...');
+            
+            const installButtons = document.querySelectorAll('.modpack-card .btn-primary');
+
+            installButtons.forEach(btn => {
+                if (btn.textContent.includes('Instalar')) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const originalText = btn.innerHTML;
+                        btn.innerHTML = '⏳ Baixando...';
+                        btn.disabled = true;
+                        btn.style.opacity = '0.7';
+
+                        setTimeout(() => {
+                            btn.innerHTML = '📦 Instalando...';
+                            setTimeout(() => {
+                                btn.innerHTML = '✅ Instalado';
+                                btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                                setTimeout(() => {
+                                    btn.innerHTML = originalText;
+                                    btn.disabled = false;
+                                    btn.style.opacity = '1';
+                                    btn.style.background = '';
+                                }, 2000);
+                            }, 2000);
+                        }, 2000);
+                    });
+                }
+            });
+        }
+
+        // ===== Initialize Page =====
+        function initializePage() {
+            console.log('🚀 Inicializando página de browse...');
+            
+            initializeDropdowns();
+            initializeViewMode();
+            initializeAdvancedFilters();
+            initializeFilterButtons();
+            initializeVersionFilter();
+            initializeSearchInput();
+            initializeInstallButtons();
+
+            // Initialize counter
+            const modpackGrid = document.getElementById('modpackGrid');
+            if (modpackGrid) {
+                updateResultsCounter(modpackGrid.querySelectorAll('.modpack-card').length);
+            }
+
+            console.log('✅ Página de browse inicializada com sucesso!');
+        }
+
+        // Chamar inicialização
+        initializePage();
+    });
+</script>
+</section>

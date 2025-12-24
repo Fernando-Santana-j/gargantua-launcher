@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gargântua Launcher</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./img/icon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title-bar">
+            <div class="title-bar-logo">
+                <img class="title-bar-logo-icon" src="./img/icon.png">
+                <div class="title-bar-text">Gargântua Launcher</div>
+            </div>
+            <div class="title-bar-controls">
+                <button id="minimize-window" class="title-bar-controls-buttons" aria-label="Minimizar">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-minus-icon lucide-minus">
+                        <path d="M5 12h14" />
+                    </svg>
+                </button>
+                <button id="maximize-window" class="title-bar-controls-buttons" aria-label="Maximizar">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-maximize2-icon lucide-maximize-2">
+                        <path d="M15 3h6v6" />
+                        <path d="m21 3-7 7" />
+                        <path d="m3 21 7-7" />
+                        <path d="M9 21H3v-6" />
+                    </svg>
+                </button>
+                <button id="close-window" class="title-bar-controls-buttons" aria-label="Fechar">
+                    <svg style="width: 2em !important; height: 2em !important;" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <div class="logo-icon">⛏️</div>
+                        <h1>MC Launcher</h1>
+                    </div>
+                    <div class="quick-launch">
+                        <button class="quick-btn">▶️ Última</button>
+                        <button class="quick-btn">➕ Nova</button>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Menu Principal</div>
+                    <div class="nav-item active" data-page="instances">
+                        <span class="nav-icon">🎮</span>
+                        <span>Instâncias</span>
+                        <span class="nav-badge">8</span>
+                    </div>
+                    <div class="nav-item" data-page="modpacks">
+                        <span class="nav-icon">📦</span>
+                        <span>Explorar Modpacks</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-icon">🔧</span>
+                        <span>Mods & Recursos</span>
+                    </div>
+
+                    <div class="nav-label">Biblioteca</div>
+                    <div class="nav-item">
+                        <span class="nav-icon">⭐</span>
+                        <span>Favoritos</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-icon">⏱️</span>
+                        <span>Recentes</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-icon">📥</span>
+                        <span>Downloads</span>
+                        <span class="nav-badge">3</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile" id="profile-menu-toggle">
+                        <div class="user-avatar">S</div>
+                        <div class="user-info">
+                            <h3>Steve_Pro</h3>
+                            <p>Premium ✨</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown" id="profile-dropdown">
+                        <div class="profile-dropdown-item" data-page="account">
+                            <span class="dropdown-icon">👤</span>
+                            <span>Minha Conta</span>
+                        </div>
+                        <div class="profile-dropdown-item" data-page="preferences">
+                            <span class="dropdown-icon">⚙️</span>
+                            <span>Preferências</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <main id="app" class="app-container" aria-live="polite"></main>
+
+
+
+
+        </div>
+    </div>
+    <script>
+        // ===== Profile Dropdown Menu =====
+const profileMenuToggle = document.getElementById('profile-menu-toggle');
+const profileDropdown = document.getElementById('profile-dropdown');
+
+// Toggle dropdown ao clicar no perfil
+profileMenuToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  profileDropdown.classList.toggle('active');
+});
+
+// Fechar dropdown ao clicar em uma opção
+profileDropdown.querySelectorAll('.profile-dropdown-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const page = item.dataset.page;
+    if (page) {
+      mountPage(page);
+      profileDropdown.classList.remove('active');
+    }
+  });
+});
+
+// Fechar dropdown ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!profileMenuToggle.contains(e.target) && !profileDropdown.contains(e.target)) {
+    profileDropdown.classList.remove('active');
+  }
+});
+    </script>
+     <script  type="module" src="./index.js"></script> 
+</body>
+
+</html>
