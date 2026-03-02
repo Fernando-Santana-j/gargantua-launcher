@@ -1,0 +1,19 @@
+{
+    "visible": true,
+    "name": "Gargantua Launcher",
+    "description": "Launcher para Minecraft desenvolvido com backend nativo em Rust e integração desktop via Tauri, utilizando interface web leve com Vite e JavaScript, com foco em alto desempenho, segurança e extensibilidade.",
+    "type":"personal",
+    "status": "development",
+    "deploy": "",
+    "technologies": [
+        "Rust",
+        "Tauri",
+        "JavaScript",
+        "CSS",
+        "EJS",
+        "API",
+    ],
+    "pinned": false,
+    "banner":"",
+    "complete": false
+}
